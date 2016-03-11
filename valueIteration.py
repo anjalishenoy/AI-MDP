@@ -16,7 +16,6 @@ class team57:
 					print '%10s' % "Wall",
 				else:
 					print '{:10.5f}'.format(self.board[row][col]),
-
 		print "\n----------------------------------------------------------"
 
 	def calculateMEU(self, N):
@@ -34,10 +33,6 @@ class team57:
 					S=0.8*self.board[row+1][col]+0.1*self.board[row][col+1]+0.1*self.board[row][col-1]
 					E=0.8*self.board[row][col+1]+0.1*self.board[row-1][col]+0.1*self.board[row+1][col]
 					W=0.8*self.board[row][col-1]+0.1*self.board[row-1][col]+0.1*self.board[row+1][col]
-					'''if row == 2 and col == 4:	
-						print self.board[row][col-1]
-					elif row == 1 and col == 1:
-						print self.board[row][col+1]'''
 
 					self.board[row][col] = self.reward + max(N,S,E,W)
 
