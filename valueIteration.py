@@ -1,10 +1,10 @@
 # /bin/python
 class team57:
 	def __init__(self):
-		self.reward=-0.05*16
+		self.reward=-0.05*57
 		self.board = [[0,   0,   0,   0,   0,   0],	#Top row Padding
-					  [0,   0,   0,  16,   0,   0],
-					  [0,   0, -16,   0,   0,   0], 
+					  [0,   0,   0,  57,   0,   0],
+					  [0,   0, -57,   0,   0,   0], 
 					  [0,   0,   0,   0,   0,   0],
 					  [0,   0,   0,   0,   0,   0]] #Bottom row padding
 
@@ -21,7 +21,7 @@ class team57:
 
 	def calculateMEU(self, N):
 		iteration=N
-		if iteration>10:
+		if iteration>8:
 			return
 		else:
 			print "\nFor iteration: "+str(iteration)
