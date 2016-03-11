@@ -1,7 +1,9 @@
 # /bin/python
+from copy import deepcopy
 class team57:
 	def __init__(self):
 		self.reward=-0.05*57
+		self.delta= 0.05*57
 		self.board = [[0,   0,   0,   0,   0,   0],	#Top row Padding
 					  [0,   0,   0,  57,   0,   0],
 					  [0,   0, -57,   0,   0,   0], 
@@ -18,9 +20,21 @@ class team57:
 					print '{:10.5f}'.format(self.board[row][col]),
 		print "\n----------------------------------------------------------"
 
+	def shouldIstop(self, board):
+		maxDiff=-1e15
+		for row in [1,2,3]:
+			for col in [1,2,3,4]:
+				diff=abs(board[row][col]-self.board[row][col])
+				maxDiff=max(maxDiff,diff)
+				if maxDiff<= self.delta:
+					return 1
+
+		return 0
+
 	def calculateMEU(self, N):
 		iteration=N
-		if iteration>8:
+		copy_board = deepcopy(self.board)
+		if iteration>8:	#Worst case 8
 			return
 		else:
 			print "\nFor iteration: "+str(iteration)
@@ -37,6 +51,8 @@ class team57:
 					self.board[row][col] = self.reward + max(N,S,E,W)
 
 		self.displayBoard()
+		if self.shouldIstop(copy_board):
+			return
 		self.calculateMEU(iteration+1)
 
 
@@ -45,3 +61,4 @@ if __name__ == '__main__':
 	B=team57()
 	x=1
 	B.calculateMEU(x)
+	print B.delta
